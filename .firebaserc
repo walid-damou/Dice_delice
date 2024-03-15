@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "dicedelice-8d551": {
+      "hosting": {
+        "dicedelice": [
+          "dicedelice-8d551"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "dicedelice-8d551"
+  }
+}

@@ -98,8 +98,28 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "dicedelice:build:production",
+              "serveTarget": "dicedelice:serve:production"
+            },
+            "development": {
+              "buildTarget": "dicedelice:build:development",
+              "serveTarget": "dicedelice:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
