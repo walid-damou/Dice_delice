@@ -6,8 +6,53 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
 </head>
-<body>
+<body class="mat-typography">
   <app-root></app-root>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+  <script>
+    function hideStepOne(){
+      document.getElementById("personalInfo").style.display="none";
+      
+      document.getElementsByClassName("step2G")[0].classList.add("text-[#ea803f]");
+      document.getElementsByClassName("step2F")[0].outerHTML = "<svg aria-hidden='true' class='w-4 h-4 mr-2 sm:w-5 sm:h-5' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd'></path></svg>";
+      document.getElementById("accountInfo").style.display="block";
+    }
+</script>
+<script>
+  function profile() {
+      document.getElementById("EditProfile").style.display = "none";
+      document.getElementById("changePassword").style.display = "none";
+      document.getElementsByClassName("Profile")[0].classList.add("text-[#ea803f]", "border-[#ea803f]");
+
+      document.getElementsByClassName("Cpassword")[0].classList.remove("text-[#ea803f]", "border-[#ea803f]");
+      document.getElementsByClassName("Eprofile")[0].classList.remove("text-[#ea803f]", "border-[#ea803f]");
+
+      document.getElementById("profile").style.display = "block";
+    }
+
+    function changePassword() {
+      document.getElementById("profile").style.display = "none";
+      document.getElementById("EditProfile").style.display = "none";
+
+      document.getElementsByClassName("Cpassword")[0].classList.add("text-[#ea803f]", "border-[#ea803f]");
+      document.getElementsByClassName("Profile")[0].classList.remove("text-[#ea803f]", "border-[#ea803f]");
+      document.getElementsByClassName("Eprofile")[0].classList.remove("text-[#ea803f]", "border-[#ea803f]");
+      document.getElementById("changePassword").style.display = "block";
+    }
+    function editProfile() {
+      document.getElementById("profile").style.display = "none";
+      document.getElementById("changePassword").style.display = "none";
+      document.getElementsByClassName("Eprofile")[0].classList.add("text-[#ea803f]", "border-[#ea803f]");
+
+      document.getElementsByClassName("Cpassword")[0].classList.remove("text-[#ea803f]", "border-[#ea803f]");
+      document.getElementsByClassName("Profile")[0].classList.remove("text-[#ea803f]", "border-[#ea803f]");
+
+      document.getElementById("EditProfile").style.display = "block";
+    }
+</script>
 </body>
 </html>
