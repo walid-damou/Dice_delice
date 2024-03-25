@@ -24,6 +24,7 @@ export class AuthService {
         } else {
           // If email is not verified
           alert('Please verify your email first.');
+          res.user?.sendEmailVerification();
           this.firebaseAuth.signOut(); // Optional: Sign out the user until they verify their email
           this.router.navigate(['/login']); // Redirect back to the login page or a specific page instructing them to verify
         }
