@@ -5,25 +5,26 @@ import { AuthService } from '../../service/auth/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit{
-  
-  constructor(private authService:AuthService , private router:Router){}
-  logged_in:any=false;
+export class HeaderComponent implements OnInit {
+  logged_in: any = false;
+  userEmail: string | null = null;
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.isLoggedIn();
+    this.userEmail = localStorage.getItem('email');
   }
+
   isLoggedIn() {
-    this.logged_in= localStorage.getItem('logged_in');
+    this.logged_in = localStorage.getItem('logged_in');
     return this.logged_in ? true : false;
   }
+
   logout() {
     localStorage.removeItem('logged_in');
     this.authService.logout();
-    
-
-}
-
+  }
 }

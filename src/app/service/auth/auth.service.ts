@@ -12,18 +12,21 @@ export class AuthService {
 
   //Login
   login(email: string, password: string){
-    this.firebaseAuth
-      .signInWithEmailAndPassword(email,password)
-        .then(res=>{
-          localStorage.setItem('user',JSON.stringify(res.user));
-          localStorage.setItem('logged_in','true');
+    this.firebaseAuth.signInWithEmailAndPassword(email, password)
+      .then(res => {
+        localStorage.setItem('user', JSON.stringify(res.user));
+        localStorage.setItem('logged_in', 'true');
+        localStorage.setItem('email', email);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate(['/']);
-        },
-        err=>{
-          // alert(err.message);
-          this.router.navigate(['/login']);
-        })
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        this.router.navigate(['/login']);
+      });
   }
+  
   
   // Sign up with email/password
   SignUp(email: string, password: string) {
