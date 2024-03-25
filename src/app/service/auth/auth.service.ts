@@ -8,36 +8,59 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   isLoggedIn = false;
-  constructor(private firebaseAuth: AngularFireAuth , private router : Router) { }
+  
+  constructor(private firebaseAuth: AngularFireAuth, private router: Router) { }
 
-  //Login
+  // Login
   login(email: string, password: string){
     this.firebaseAuth
-      .signInWithEmailAndPassword(email,password)
-        .then(res=>{
-          localStorage.setItem('user',JSON.stringify(res.user));
-          localStorage.setItem('logged_in','true');
-          this.router.navigate(['/']);
-        },
-        err=>{
-          // alert(err.message);
-          this.router.navigate(['/login']);
-        })
+      .signInWithEmailAndPassword(email, password)
+      .then(res => {
+        // Check if the email is verified
+        if (res.user && res.user.emailVerified) {
+          localStorage.setItem('user', JSON.stringify(res.user));
+          localStorage.setItem('logged_in', 'true');
+          this.router.navigate(['/']); // Navigate to the home page or dashboard
+        } else {
+          // If email is not verified
+          alert('Please verify your email first.');
+          this.firebaseAuth.signOut(); // Optional: Sign out the user until they verify their email
+          this.router.navigate(['/login']); // Redirect back to the login page or a specific page instructing them to verify
+        }
+      })
+      .catch(err => {
+        // Handle login errors here
+        alert(err.message); // Show the error message
+        this.router.navigate(['/login']);
+      });
   }
   
   // Sign up with email/password
-  SignUp(email: string, password: string) {
-    this.firebaseAuth
-      .createUserWithEmailAndPassword(email, password)
-        .then((result) => {
-          // console.log(result);
-          this.router.navigate(['/home']);
-        },
-        error => {
-          this.router.navigate(['/signUp']);
-        });
+  async SignUp(email: string, password: string) {
+    try {
+      const result = await this.firebaseAuth.createUserWithEmailAndPassword(email, password);
+      if(result.user) {
+        alert('Please verify your email');
+        await this.sendVerificationMail(result.user);
+        this.router.navigate(['/verify-email']); // Navigate to a verification notice page
+      }
+    } catch (error) {
+      console.error("Signup Error:", error);
+      this.router.navigate(['/signUp']);
+      // Handle errors here (show to user, log, etc.)
+    }
   }
-
+  async sendVerificationMail(user : any) {
+    try {
+      await user.sendEmailVerification();
+      console.log('Verification email sent.');
+      // Email verification sent
+      // Optionally, inform the user with a message
+    } catch (error) {
+      console.error("Error sending email verification", error);
+      // Handle errors here
+    }
+  }
   //Logout
 
   logout(){

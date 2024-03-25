@@ -22,7 +22,6 @@ export class RegistrationFormComponent implements OnInit {
   Cpassword : any;
   
   constructor(private authService : AuthService , private router:Router){ }
-  
   ngOnInit(): void {
     // localStorage.setItem("logged_in" , "false");
   }
