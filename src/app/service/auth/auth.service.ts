@@ -40,7 +40,16 @@ export class AuthService {
           this.router.navigate(['/signUp']);
         });
   }
+  getAuth() { 
+    return this.firebaseAuth; 
+  }
+  resetPasswordInit(email: string) { 
+    return this.firebaseAuth.sendPasswordResetEmail(
+      email, 
+      { url: 'http://localhost:4200/auth' }); 
+    } 
 
+  
   //Logout
 
   logout(){

@@ -23,6 +23,8 @@ export class HeaderComponent implements OnInit {
     return this.logged_in ? true : false;
   }
 
+ 
+
   logout() {
     localStorage.removeItem('logged_in');
     this.authService.logout();

@@ -1,0 +1,17 @@
+<html>
+  <div *ngIf="!actionCodeChecked">
+    <p>Loading...</p>
+</div>
+
+<div *ngIf="actionCodeChecked">
+    <div *ngIf="!errorMessage">
+        <input type="password" [(ngModel)]="newPassword" placeholder="New Password"><br>
+        <input type="password" [(ngModel)]="confirmPassword" placeholder="Confirm Password"><br>
+        <button (click)="handleResetPassword()">Reset Password</button> 
+    </div>
+    <div *ngIf="errorMessage">
+        <p>Error: {{ errorMessage }}</p>
+    </div>
+</div>
+
+  </html>
