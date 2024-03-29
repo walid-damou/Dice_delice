@@ -30,4 +30,10 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  signInWithGoogle() {
+    this.authService.signInWithGoogle().then(() => {
+    }).catch(error => {
+      console.error("Error during Google sign-in:", error);
+    });
+  }
 }
