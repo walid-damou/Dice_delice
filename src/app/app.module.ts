@@ -31,6 +31,14 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { ReservationFormComponent } from './components/reservation/reservation-form/reservation-form.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
+import { SearchbarBookComponent } from './components/Books/searchbar-book/searchbar-book.component';
+import { BooksComponent } from './pages/books/books.component';
+import { ListOfBooksComponent } from './components/Books/list-of-books/list-of-books.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { ListOfGamesComponent } from './components/Games/list-of-games/list-of-games.component';
+import { GameDetailsComponent } from './components/Games/game-details/game-details.component';
+import { SearchbarComponent } from './components/Games/searchbar/searchbar.component';
+import { GamesComponent } from './pages/games/games.component';
 
 
 @NgModule({
@@ -56,8 +64,13 @@ import { ReservationsComponent } from './pages/reservations/reservations.compone
     ForgotPasswordComponent,
     ReservationFormComponent,
     ReservationsComponent,
-    
-
+    SearchbarBookComponent,
+    BooksComponent,
+    ListOfBooksComponent,
+    ListOfGamesComponent,
+    GameDetailsComponent,
+    SearchbarComponent,
+    GamesComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +79,7 @@ import { ReservationsComponent } from './pages/reservations/reservations.compone
     AngularFireAuthModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [
     AuthService,

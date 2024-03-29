@@ -1,0 +1,26 @@
+<section class="bg-[#fcf8f5] py-16 space-y-4 flex flex-col justify-center items-center">
+    <div class="m-4 md:m-0">
+        <h2 class="font-semibold text-lg text-center md:text-xl tracking-widest text-gray-800">Our Games</h2>
+        <h1 class="font-bold text-xl text-center md:text-2xl capitalize text-gray-800">
+            We offer you a variety of <span class="text-[#ea803f] capitalize">games</span>  that you can enjoy.
+        </h1>
+    </div>
+    <form class="md:mx-24 mx-10 pt-[10px] md:w-[600px]">
+        <label for="default-search"
+            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+            <input type="search" id="default-search"
+                class="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white "
+                placeholder="Search ..." required [(ngModel)]="searchText" (input)="OnChnageSearchText()" name="searchtext">
+            <!-- <button type="submit"
+                class="text-white absolute right-0 bottom-0 top-0 bg-[#ea803f] hover:bg-[#d76823] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-tr-lg rounded-br-lg text-sm px-6">Search</button> -->
+        </div>
+    </form>
+</section>
