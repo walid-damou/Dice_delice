@@ -29,6 +29,8 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { AuthService } from './service/auth/auth.service';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
+import { ReservationFormComponent } from './components/reservation/reservation-form/reservation-form.component';
+import { ReservationsComponent } from './pages/reservations/reservations.component';
 
 
 @NgModule({
@@ -52,6 +54,9 @@ import { ForgotPasswordComponent } from './components/login/forgot-password/forg
     SignUpComponent,
     UserManagementComponent,
     ForgotPasswordComponent,
+    ReservationFormComponent,
+    ReservationsComponent,
+    
 
   ],
   imports: [
