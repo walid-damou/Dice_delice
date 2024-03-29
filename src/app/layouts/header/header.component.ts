@@ -9,13 +9,18 @@ import { AuthService } from '../../service/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
   logged_in: any = false;
-  userEmail: string | null = null;
+  user: any | null = null;
+  data_user = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.isLoggedIn();
-    this.userEmail = localStorage.getItem('email');
+    const data_user = localStorage.getItem('user_login');
+    this.user = data_user ? JSON.parse(data_user) : null;
+
+    console.log('toktok');
+    // console.log(this.user);
   }
 
   isLoggedIn() {
