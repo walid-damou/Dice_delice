@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ReservationService } from '../../../service/reservation/reservation.service'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservation-form',
@@ -20,20 +21,13 @@ export class ReservationFormComponent {
   user : any;
   
   today: string = new Date().toISOString().substring(0, 10);
-  constructor(private reservationService: ReservationService) {}
+  constructor(private reservationService: ReservationService,private router:Router) {}
   ngOnInit(): void {
 
   }
   
   addReservation() {
     
-  console.log("reservation_date:", this.reservation_date);
-  console.log("start_time:", this.start_time);
-  console.log("end_time:", this.end_time);
-  console.log("id_game:", this.id_game);
-  console.log("id_user:", this.id_user);
-  console.log("payement:", this.payement);
-  console.log("instructions:", this.instructions);
 
     const reservationData = {
       "reservation_date": this.reservation_date,
@@ -50,6 +44,7 @@ export class ReservationFormComponent {
     this.reservationService.addReservation(reservationData)
       .then(() => {
         console.log('Reservation added successfully!');
+        this.router.navigate(['/']);
       })
       .catch(error => {
         console.error('Error adding reservation:', error);
