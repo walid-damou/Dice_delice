@@ -1,0 +1,70 @@
+<section class="">
+    <div class="mx-10 pt-[10px] md:mx-24 my-10">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-10">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-[#D76823]">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-white">
+                             id
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-white">
+                            Date
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-white">
+                            Start
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-white">
+                            End
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-white">
+                            Game
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-white">
+                            Payement
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-white">
+                            Instructions
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-white">
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let reservation of reservations | paginate: { itemsPerPage: 9, currentPage: p }"
+                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <!-- {{reservation.id}} -->
+                        </th>
+                        <td class="px-6 py-4">
+                            {{reservation.reservation_date}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{reservation.start_time}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{reservation.end_time}}
+                        </td>
+                        <td class="px-6 py-4">
+                           {{reservation.name}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{reservation.payement}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{reservation.instructions}} 
+                        </td>
+                        <td class="px-6 py-4">
+                            {{reservation.status}} 
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="flex justify-center md:justify-end mt-4">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</section>

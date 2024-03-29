@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +32,11 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { ReservationFormComponent } from './components/reservation/reservation-form/reservation-form.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ProfileFormComponent } from './components/profile/profile-form/profile-form.component';
+import { ListOfReservationsComponent } from './components/myReservations/list-of-reservations/list-of-reservations.component';
+import { SearchBarComponent } from './components/myReservations/search-bar/search-bar.component';
+import { MyReservationsComponent } from './pages/my-reservations/my-reservations.component';
 
 
 @NgModule({
@@ -56,6 +62,11 @@ import { ReservationsComponent } from './pages/reservations/reservations.compone
     ForgotPasswordComponent,
     ReservationFormComponent,
     ReservationsComponent,
+    ProfileComponent,
+    ProfileFormComponent,
+    ListOfReservationsComponent,
+    SearchBarComponent,
+    MyReservationsComponent,
     
 
   ],
@@ -64,6 +75,7 @@ import { ReservationsComponent } from './pages/reservations/reservations.compone
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    NgxPaginationModule,
     FormsModule,
     HttpClientModule,
   ],

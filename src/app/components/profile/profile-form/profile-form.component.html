@@ -1,0 +1,161 @@
+<section class="flex flex-col justify-center shadow-md p-6">
+    <div class="ml-40 m-5">
+        <div class=" border-b border-gray-200 dark:border-gray-700 flex justify-end">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+                <li class="mr-2">
+                    <a onclick="profile()" class="Profile inline-flex  cursor-pointer p-4 border-b-2 border-transparent rounded-t-lg text-[#ea803f] border-[#ea803f] hover:text-[#ea803f] hover:border-[#ea803f] dark:hover:text-gray-300 group">
+                        Profile
+                    </a>
+                </li>
+                <li class="mr-2">
+                    <a onclick="changePassword()"  class=" Cpassword inline-flex p-4 border-b-2  border-transparent cursor-pointer rounded-t-lg hover:text-[#ea803f] hover:border-[#ea803f] dark:hover:text-gray-300 group">
+                        Change Password
+                    </a>
+                </li>
+                <li class="mr-2">
+                    <a onclick="editProfile()" class="Eprofile inline-flex p-4 border-b-2 border-transparent  cursor-pointer rounded-t-lg hover:text-[#ea803f] hover:border-[#ea803f] dark:hover:text-gray-300 group">
+                        Edit Profile
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div   id="profile">
+        <div class=" flex flex-row" >
+            <div class="w-1/2 pl-20 pt-10" >
+                <div class="flex flex-row space-x-10 ">
+                    <div>
+                        <img class="rounded-lg" [src]="'assets/imgs/' + user.picture" width="100px" height="100px" alt="" >
+                    </div>
+                    <div class="space-y-2">
+                        <h2 class="text-xl font-bold">{{user.firstName}} {{user.lastName}} </h2>
+                    </div>
+                </div>
+                <div class=" mt-20 h-[200px]">
+                    <h3 class="font-bold ">Email : </h3>
+                    <p class="font-normal">{{user.email}}</p>
+                    <h3 class="font-semibold ">Phone : </h3>
+                    <p class="font-normal">{{user.phone}}</p>
+                    
+                </div>
+                
+            </div>
+            <div class="w-1/2">
+                <div class="mt-[220px] flex justify-end">
+                    
+                </div>
+                <h3 class="font-semibold ">Date of Birth : </h3>
+                <p class="font-normal">{{user.dateBirth}}</p>
+                <h3 class="font-semibold ">Address : </h3>
+                <p class="font-normal">{{user.address}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div  class="flex flex-col items-center justify-center h-full ">
+        <div id="changePassword" class="hidden p-6 space-y-12 md:space-y-12 w-2/6"> 
+            <div class="flex justify-center text-2xl font-bold">
+                <h2>Change Password</h2>
+            </div>      
+            <div class="space-y-4 md:space-y-6 ">
+                <form class="space-y-4 md:space-y-6 " action="#">
+                    <div class="w-full" id="currentPassword">
+                        <label for="currentPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current password</label>
+                        <input type="password" name="currentPassword" [(ngModel)]="dataPassword.currentPassword"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required="">
+                    </div>
+                    <div class="w-full" id="newPassword">
+                        <label for="newPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New password</label>
+                        <input type="password" name="newPassword" [(ngModel)]="dataPassword.newPassword"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required="">
+                    </div>
+                    <div class="w-full" id="confirmPassword">
+                        <label for="confirmPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm new password</label>
+                        <input type="password" name="confirmPassword" [(ngModel)]="dataPassword.confirmPassword"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required="">
+                    </div>
+                    <button type="submit" (click)="updatePassword()"
+                        class=" w-full text-gray-800 bg-[#ea803f] hover:bg-[#d76823] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        Update password
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div  class=" flex flex-col items-center justify-center h-full  ">
+        <div id="EditProfile" class="hidden shadow-md  p-6 space-y-12 md:space-y-12 w-[650px] "> 
+            <div class="flex justify-center text-2xl font-bold">
+                <h2>Edit Profile : Name</h2>
+            </div>      
+            <div class="space-y-4 md:space-y-6 ">
+                <form class="space-y-4 md:space-y-6 " action="#">
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
+                        <div class="md:w-1/2 " id="fistName">
+                            <label for="fistName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
+                            <input type="text" name="fistName"   [(ngModel)]="dataUser.firstName" 
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Fisrt name" required="">
+                        </div>
+                        <div class="md:w-1/2" id="lastName">
+                            <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+                            <input type="text" name="lastName"  [(ngModel)]="dataUser.lastName" 
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Last name" required="">
+                        </div>
+                        
+                    </div>
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
+                        <div class="md:w-1/2">
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                            <input type="email" name="email" id="email" [(ngModel)]="dataUser.email" 
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="name@company.com" required="">
+                        </div>
+                        <div class="md:w-1/2">
+                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
+                            <input type="text" name="phone" id="phone" [(ngModel)]="dataUser.phone"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="+212 666 666 666" required="">
+                        </div>
+                                          
+                    </div>
+                     
+                    
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
+                        <div class="md:w-1/2" id="dob">
+                            <label for="dob" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth</label>
+                            <input type="date" name="dob" [(ngModel)]="dataUser.dateBirth"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                required="">
+                        </div>
+                        <div class="md:w-1/2" id="address">
+                            <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">address</label>
+                            <input type="text" name="address" [(ngModel)]="dataUser.address" 
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="address" required="">
+                        </div>
+                    </div>
+                    <button type="submit"  (click)="updateProfile()"
+                        class="w-full text-gray-800 bg-[#ea803f] hover:bg-[#d76823] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        Update
+                    </button>
+                    <div class="flex flex-col items-end md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
+                        
+                        
+                    </div>
+                    
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    
+</section>
