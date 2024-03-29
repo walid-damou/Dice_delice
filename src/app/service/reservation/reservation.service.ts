@@ -8,4 +8,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class ReservationService {
 
   constructor(private db: AngularFirestore) { }
+  
+  addReservation(reservationData: any) {
+    return this.db.collection('Reservations').add(reservationData);
+  }
 }

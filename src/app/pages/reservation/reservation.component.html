@@ -35,7 +35,7 @@
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="id_game" name="id_game">
             <option disabled>Select a game</option>
-            <option *ngFor="let g of games" value="{{g.id}}">{{g.name}}</option>
+            <!-- <option *ngFor="let g of games" value=1>{{g.name}}</option> -->
           </select>
         </div>
         <!-- start time -->
@@ -109,49 +109,7 @@
       <!-- form footer section  -->
       <div class="flex justify-between items-center">
         <!-- cancellation -->
-        <div>
-          <a class="cursor-pointer text-gray-600 font-normal capitalize text-md" type="button" (click)="toggleModal()">
-            Cancellation Policy
-          </a>
-          <div *ngIf="showModal"
-            class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
-            <div class="relative w-auto my-6 mx-auto max-w-3xl">
-              <div
-                class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                <!--header-->
-                <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 class="text-xl font-semibold">
-                    Cancellation Policy
-                  </h3>
-                  <button
-                    class="p-1 ml-auto  border-0 text-gray-900 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    (click)="toggleModal()">
-                    <span class="bg-transparent text-gray-900 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
-                  </button>
-                </div>
-                <!--body-->
-                <div class="relative p-6 flex-auto">
-                  <p class="my-4 text-slate-500 text-lg leading-relaxed">
-                    <span class="font-medium ">We understand that plan changes may occur and we are happy to cancel your
-                      reservation if
-                      necessary. However, we ask that you notify us as soon as possible if you need to cancel. If you
-                      cancel
-                      your reservation at least 24 hours before the reservation time, no fee will be charged. If you
-                      cancel less
-                      than 24 hours before the reservation time, we reserve the right to charge a cancellation fee
-                      equivalent to
-                      50% of the cost of the reservation. If you do not show up for your reservation without prior
-                      cancellation,
-                      we will charge a cancellation fee equivalent to 100% of the cost of the reservation.</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
-        </div>
+        
         <!-- book btn -->
         <div class="">
           <button (click)="addReservation()"
