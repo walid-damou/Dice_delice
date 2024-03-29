@@ -27,6 +27,8 @@ import { RegistrationFormComponent } from './components/signUp/registration-form
 import { HttpClientModule } from '@angular/common/http';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { AuthService } from './service/auth/auth.service';
+import { UserManagementComponent } from './components/user-management/user-management.component';
+import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -48,6 +50,8 @@ import { AuthService } from './service/auth/auth.service';
     LeftDescriptionComponent,
     RegistrationFormComponent,
     SignUpComponent,
+    UserManagementComponent,
+    ForgotPasswordComponent,
 
   ],
   imports: [

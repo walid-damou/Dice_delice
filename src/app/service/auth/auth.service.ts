@@ -36,6 +36,7 @@ export class AuthService {
       });
   }
   
+  
   // Sign up with email/password
   async SignUp(email: string, password: string) {
     try {
@@ -62,6 +63,16 @@ export class AuthService {
       // Handle errors here
     }
   }
+
+  getAuth() { 
+    return this.firebaseAuth; 
+  }
+  resetPasswordInit(email: string) { 
+    return this.firebaseAuth.sendPasswordResetEmail(
+      email, 
+      { url: 'http://localhost:4200/auth' }); 
+    } 
+
   //Logout
 
   logout(){
