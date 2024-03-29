@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import firebase from 'firebase/compat/app';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,25 @@ export class AuthService {
       });
   }
   
+  async signInWithGoogle() {
+    try {
+      const result = await this.firebaseAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      if (result.user) {
+        // Optionally, check if the user is new and handle accordingly
+        localStorage.setItem('user', JSON.stringify(result.user));
+        localStorage.setItem('logged_in', 'true');
+        this.router.navigate(['/']); // Navigate to the home page or dashboard
+      }
+    } catch (error) {
+      if (error instanceof Error) { // This checks if it's an Error object
+        console.error("Error signing in with Google:", error.message);
+        alert(error.message);
+      } else {
+        console.error("Error signing in with Google:", error);
+        // Handle non-Error objects; maybe just log them or show a generic message
+      }
+    }    
+  }
   
   // Sign up with email/password
   async SignUp(email: string, password: string) {
