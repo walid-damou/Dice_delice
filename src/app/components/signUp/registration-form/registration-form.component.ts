@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../service/auth/auth.service';
+import { SignUpService } from '../../../service/signUp/sign-up.service';
 
 @Component({
   selector: 'app-registration-form',
@@ -21,7 +22,7 @@ export class RegistrationFormComponent implements OnInit {
   password : any;
   Cpassword : any;
   
-  constructor(private authService : AuthService , private router:Router){ }
+  constructor(private authService : AuthService ,private signupService:SignUpService, private router:Router){ }
   ngOnInit(): void {
     // localStorage.setItem("logged_in" , "false");
   }
@@ -37,12 +38,12 @@ export class RegistrationFormComponent implements OnInit {
       "username":this.username,
       "phone":this.phone,
       "email":this.email,
-      "password":this.password,
-      "password_confirmation":this.Cpassword,
       "picture":this.lastName+".jpeg"
   }
   localStorage.setItem("user" , JSON.stringify(newUser));
-  this.authService.SignUp(newUser.email , newUser.password_confirmation);
+  this.signupService.addUser(newUser);
+  this.authService.SignUp(newUser.email , this.Cpassword);
+  
   }
 
 }
