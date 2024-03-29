@@ -9,11 +9,11 @@ import { ApiService } from './api.service';
 export class AppComponent implements OnInit{
   title = 'dicedelice';
 
-  public pokemonId:number =-1
+  public pokemonId:number =1
   constructor(
     public apiService:ApiService
   ){}
-  ngOnInit(){}
+  ngOnInit(){this.getPkm();}
 
   public getPkm(){
     this.apiService.getPokemon(this.pokemonId).subscribe(a=>{console.log(a)})
