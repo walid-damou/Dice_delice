@@ -38,7 +38,11 @@ import { ListOfGamesComponent } from './components/Games/list-of-games/list-of-g
 import { GameDetailsComponent } from './components/Games/game-details/game-details.component';
 import { SearchbarComponent } from './components/Games/searchbar/searchbar.component';
 import { GamesComponent } from './pages/games/games.component';
-
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ProfileFormComponent } from './components/profile/profile-form/profile-form.component';
+import { ListOfReservationsComponent } from './components/myReservations/list-of-reservations/list-of-reservations.component';
+import { SearchBarComponent } from './components/myReservations/search-bar/search-bar.component';
+import { MyReservationsComponent } from './pages/my-reservations/my-reservations.component';
 
 @NgModule({
   declarations: [
@@ -70,13 +74,17 @@ import { GamesComponent } from './pages/games/games.component';
     GameDetailsComponent,
     SearchbarComponent,
     GamesComponent,
+    ProfileComponent,
+    ProfileFormComponent,
+    ListOfReservationsComponent,
+    SearchBarComponent,
+    MyReservationsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    NgxPaginationModule,
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,

@@ -10,7 +10,7 @@ export class ProfileFormComponent {
   constructor( private router:Router , private route: Router){ }
     id : any;
     user : any;
-    
+
     dataPassword={
       currentPassword : '',
       newPassword : '',
@@ -30,7 +30,7 @@ export class ProfileFormComponent {
       this.user=localStorage.getItem("user_login");
       this.user=JSON.parse(this.user);
 
-            
+
       this.dataUser.firstName = this.user.firstName;
       this.dataUser.lastName = this.user.lastName;
       this.dataUser.dateBirth = this.user.dateBirth;
@@ -40,9 +40,9 @@ export class ProfileFormComponent {
 
     }
     updateProfile(){
-      
+
     }
     updatePassword(){
-     
+
     }
 }
