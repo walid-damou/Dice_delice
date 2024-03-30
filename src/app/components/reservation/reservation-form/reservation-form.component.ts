@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ReservationService } from '../../../service/reservation/reservation.service'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservation-form',
@@ -26,7 +27,8 @@ export class ReservationFormComponent implements OnInit {
   constructor(
     private reservationService: ReservationService,
     private afAuth: AngularFireAuth,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private router : Router
   ) {}
 
   ngOnInit(): void {
@@ -41,15 +43,6 @@ export class ReservationFormComponent implements OnInit {
   
   addReservation() {
     
-
-    console.log("reservation_date:", this.reservation_date);
-    console.log("start_time:", this.start_time);
-    console.log("end_time:", this.end_time);
-    console.log("id_game:", this.id_game);
-    console.log("id_user:", this.id_user);
-    console.log("payement:", this.payement);
-    console.log("instructions:", this.instructions);
-
     const reservationData = {
       "reservation_date": this.reservation_date,
       "start_time": this.start_time,
@@ -65,6 +58,7 @@ export class ReservationFormComponent implements OnInit {
     this.reservationService.addReservation(reservationData)
       .then(() => {
         console.log('Reservation added successfully!');
+        this.router.navigate(['/']);
       })
       .catch(error => {
         console.error('Error adding reservation:', error);

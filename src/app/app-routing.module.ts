@@ -7,7 +7,8 @@ import { ForgotPasswordComponent } from './components/login/forgot-password/forg
 import { ReservationsComponent } from './pages/reservations/reservations.component'; 
 import { BooksComponent } from './pages/books/books.component';
 import { GamesComponent } from './pages/games/games.component';
-
+import { ProfileComponent } from './pages/profile/profile.component';
+import { MyReservationsComponent } from './pages/my-reservations/my-reservations.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +18,9 @@ const routes: Routes = [
   { path: 'books', component: BooksComponent },
   { path: 'games', component: GamesComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reservation', component: ReservationsComponent }
+  { path: 'reservation', component: ReservationsComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'myreservations', component: MyReservationsComponent },
 ];
 
 @NgModule({

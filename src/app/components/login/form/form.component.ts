@@ -21,6 +21,7 @@ export class FormComponent implements OnInit {
     user.subscribe(user => {
       console.log("user Infos",user[0]);
       localStorage.setItem("user_login" , JSON.stringify(user[0]));
+      this.router.navigate(['/home'])
     });
   
 
