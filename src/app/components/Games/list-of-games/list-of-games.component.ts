@@ -14,6 +14,7 @@ export class ListOfGamesComponent {
   p:number=1;
 
   constructor(private gamesService : GameService , private router:Router){ }
+  
   ngOnInit(): void {
     console.log("games:")
     const gamess = this.gamesService.listGames();
@@ -22,5 +23,7 @@ export class ListOfGamesComponent {
       this.games=games;
       // localStorage.setItem("user_login" , JSON.stringify(user[0]));
     });
+
+  
   }
 }

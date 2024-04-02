@@ -14,6 +14,17 @@ export class GameService {
     const games = this.db.collection('Games').valueChanges();
     return games;
   }
+  
+  // ajouter un jeux 
+  addGame(newGame:any){
+    this.db.collection("Games").doc().set(newGame)
+    .then(() => {
+      console.log("Document successfully written!");
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
+  }
     
 
 }
