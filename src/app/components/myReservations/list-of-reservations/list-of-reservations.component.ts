@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrl: './list-of-reservations.component.css'
 })
 export class ListOfReservationsComponent implements OnInit {
+  
   @Input() reservations!:any[];
   p: number = 1;
 

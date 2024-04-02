@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-  url: string = 'http://localhost:8000';
- 
+   
 
-  constructor(private http: HttpClient) { }
+  constructor(private db:AngularFirestore) { }
 
-  listGames(): Observable<any> {
-    return this.http.get<any>(this.url + '/api/games');
+  listGames(): Observable<any[]> {
+    const games = this.db.collection('Games').valueChanges();
+    return games;
   }
-  
-
-  
+    
 
 }
+ 
