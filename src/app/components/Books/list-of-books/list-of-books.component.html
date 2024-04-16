@@ -1,13 +1,15 @@
 <section class="">
     <div class="m-10 pt-[10px] md:mx-24 ">
+        
         <!-- <h1 *ngFor="let game of games">{{ game.id }}</h1> -->
         <div class="flex gap-4 flex-wrap items-center ">
-            <div *ngFor="let book of books | paginate: { itemsPerPage: 9, currentPage: p }">
+            <div *ngFor="let book of books | paginate: { itemsPerPage: 9, currentPage: p }; let i = index">
                 <div *ngIf="searchText === '' || book.name.toLowerCase().includes(searchText) || book.name.includes(searchText)"
                     class="md:w-[300px] bg-white border border-gray-200 rounded-lg shadow ">
                     <div>
-                        <img class="rounded-t-lg h-[300px]" src="/assets/imgs/{{book.picture}}" alt="book" />
+                        <img class="rounded-t-lg h-[300px]" src="/assets/imgs/Books/{{i}}.jpg" alt="book" />
                     </div>
+                    
                     <div class="p-5">
                         <div>
                             <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">
