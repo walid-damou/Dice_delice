@@ -34,13 +34,27 @@ export class ReservationFormComponent implements OnInit {
   ngOnInit(): void {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.firestore.collection('users').doc(user.uid).get().subscribe(userData => {
-          this.id_user = userData.id;
-        });
+        this.user = user;
+        this.id_user = user.uid;
+  
+        if (user.email) {
+          this.reservationService.getUserDocumentIdByEmail(user.email)
+            .subscribe(docId => {
+              this.id_user = docId;
+              console.log("Document ID of the user:", docId);
+              
+            }, error => {
+              console.error('Error retrieving user document ID:', error);
+            });
+        } else {
+          console.error('User email is null');
+        }
       }
     });
   }
   
+  
+
   addReservation() {
     
     const reservationData = {
@@ -56,14 +70,14 @@ export class ReservationFormComponent implements OnInit {
     console.log(reservationData);
 
     this.reservationService.addReservation(reservationData)
-      .then(() => {
-        console.log('Reservation added successfully!');
-        this.router.navigate(['/']);
-      })
-      .catch(error => {
-        console.error('Error adding reservation:', error);
-      });
-  }
+    .then((docRef) => {
+      console.log('Reservation added successfully! Reservation ID:', docRef.id);
+      this.router.navigate(['/']);
+    })
+    .catch(error => {
+      console.error('Error adding reservation:', error);
+    });
+}
 
   showModal = false;
   toggleModal() {
