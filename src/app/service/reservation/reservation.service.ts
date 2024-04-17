@@ -14,7 +14,6 @@ export class ReservationService {
     return this.db.collection('Reservations').add(reservationData);
   }
   
-
   getUserDocumentIdByEmail(email: string): Observable<string> {
     return this.db.collection('Users', ref => ref.where('email', '==', email)).get().pipe(
       map(querySnapshot => {
@@ -26,5 +25,18 @@ export class ReservationService {
       })
     );
   }
+  
+  getAllGames(): Observable<any[]> {
+    return this.db.collection('Games').snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data: any = a.payload.doc.data(); // Explicitly type data as any
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+  }
+  
   
 }
