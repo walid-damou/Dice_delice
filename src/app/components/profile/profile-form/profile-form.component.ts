@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProfileService } from '../../../service/Profile/profile.service';
 
 @Component({
   selector: 'app-profile-form',
   templateUrl: './profile-form.component.html',
   styleUrl: './profile-form.component.css'
 })
-export class ProfileFormComponent {
-  constructor( private router:Router , private route: Router){ }
+export class ProfileFormComponent implements OnInit {
+  
+  constructor( private profileService : ProfileService){ }
     id : any;
     user : any;
 
@@ -27,10 +29,10 @@ export class ProfileFormComponent {
     };
 
     ngOnInit(): void {
+      console.log("waliddd");
+      
       this.user=localStorage.getItem("user_login");
       this.user=JSON.parse(this.user);
-
-
       this.dataUser.firstName = this.user.firstName;
       this.dataUser.lastName = this.user.lastName;
       this.dataUser.dateBirth = this.user.dateBirth;
@@ -38,11 +40,29 @@ export class ProfileFormComponent {
       this.dataUser.email = this.user.email;
       this.dataUser.address = this.user.address;
 
+      this.profileService.getUserID_DocumentIdByEmail(this.user.email)
+          .subscribe(userId => {
+            console.log("Document ID of the user:", userId);
+            
+          }, error => {
+            console.error('Error retrieving user document ID:', error);
+          });
+      
     }
     updateProfile(){
-
+      
     }
     updatePassword(){
-
+      // this.profileService.getUserByEmail(this.user.email).subscribe((users: any[]) => {
+      //   console.log('Users:', users);
+      // }, error => {
+      //   console.error('Error fetching user data:', error);
+      // });
+      this.profileService.updatePassword(this.dataPassword.newPassword)
+      if (this.dataPassword.newPassword==this.dataPassword.confirmPassword){
+        
+      }
     }
+
+    
 }

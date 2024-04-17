@@ -19,6 +19,7 @@ export class ReservationService {
     return this.db.collection('Users', ref => ref.where('email', '==', email)).get().pipe(
       map(querySnapshot => {
         if (!querySnapshot.empty) {
+          console.log(querySnapshot.docs[0].id);
           return querySnapshot.docs[0].id;
         } else {
           throw new Error('User not found');

@@ -33,7 +33,7 @@ import { ReservationsComponent } from './pages/reservations/reservations.compone
 import { SearchbarBookComponent } from './components/Books/searchbar-book/searchbar-book.component';
 import { BooksComponent } from './pages/books/books.component';
 import { ListOfBooksComponent } from './components/Books/list-of-books/list-of-books.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ListOfGamesComponent } from './components/Games/list-of-games/list-of-games.component';
 import { GameDetailsComponent } from './components/Games/game-details/game-details.component';
 import { SearchbarComponent } from './components/Games/searchbar/searchbar.component';
@@ -43,6 +43,7 @@ import { ProfileFormComponent } from './components/profile/profile-form/profile-
 import { ListOfReservationsComponent } from './components/myReservations/list-of-reservations/list-of-reservations.component';
 import { SearchBarComponent } from './components/myReservations/search-bar/search-bar.component';
 import { MyReservationsComponent } from './pages/my-reservations/my-reservations.component';
+import { BookDetailsComponent } from './components/Books/book-details/book-details.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { MyReservationsComponent } from './pages/my-reservations/my-reservations
     ProfileFormComponent,
     ListOfReservationsComponent,
     SearchBarComponent,
-    MyReservationsComponent
+    MyReservationsComponent,
+    BookDetailsComponent
   ],
   imports: [
     BrowserModule,
