@@ -19,7 +19,7 @@ export class ReservationFormComponent implements OnInit {
   id_user: any;
   id_game: any;
 
-  games: any;
+  games: any[] = [];
   user: any;
 
   today: string = new Date().toISOString().substring(0, 10);
@@ -42,7 +42,6 @@ export class ReservationFormComponent implements OnInit {
             .subscribe(docId => {
               this.id_user = docId;
               console.log("Document ID of the user:", docId);
-              
             }, error => {
               console.error('Error retrieving user document ID:', error);
             });
@@ -51,33 +50,48 @@ export class ReservationFormComponent implements OnInit {
         }
       }
     });
+  
+    this.reservationService.getAllGames()
+      .subscribe(games => {
+        this.games = games;
+        console.log("Games:", this.games);
+      });
   }
+  
   
   
 
   addReservation() {
+    const selectedGame = this.games.find(game => game.id === this.id_game);
     
-    const reservationData = {
-      "reservation_date": this.reservation_date,
-      "start_time": this.start_time,
-      "end_time": this.end_time,
-      "id_game": this.id_game=1,
-      "id_user": this.id_user,
-      "payement": this.payement,
-      "instructions": this.instructions,
-    };
-
-    console.log(reservationData);
-
-    this.reservationService.addReservation(reservationData)
-    .then((docRef) => {
-      console.log('Reservation added successfully! Reservation ID:', docRef.id);
-      this.router.navigate(['/']);
-    })
-    .catch(error => {
-      console.error('Error adding reservation:', error);
-    });
-}
+    if (selectedGame) {
+      const reservationData = {
+        "reservation_date": this.reservation_date,
+        "start_time": this.start_time,
+        "end_time": this.end_time,
+        "id_game": selectedGame.id,
+        "id_user": this.id_user,
+        "payement": this.payement,
+        "instructions": this.instructions,
+      };
+  
+      console.log(reservationData);
+  
+      this.reservationService.addReservation(reservationData)
+        .then((docRef) => {
+          console.log('Reservation added successfully! Reservation ID:', docRef.id);
+          this.router.navigate(['/']);
+        })
+        .catch(error => {
+          console.error('Error adding reservation:', error);
+        });
+    } else {
+      console.error('Selected game not found.');
+    }
+  }
+  
+  
+  
 
   showModal = false;
   toggleModal() {
