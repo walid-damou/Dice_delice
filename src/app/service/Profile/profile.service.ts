@@ -29,7 +29,11 @@ export class ProfileService {
     return this.db.collection('Users', ref => ref.where('email', '==', email)).valueChanges();
   }
 
+  updateProfile(id:string , data:any){
+    this.db.collection('Users').doc(id).update({firstName : data.firstName , lastName : data.lastName , dateBirth:data.dateBirth , phone:data.phone,address:data.address});
+  }
+
   updatePassword(dataPassword:string){
-    
+
   }
 }

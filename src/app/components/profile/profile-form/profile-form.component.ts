@@ -9,7 +9,7 @@ import { ProfileService } from '../../../service/Profile/profile.service';
 })
 export class ProfileFormComponent implements OnInit {
   
-  constructor( private profileService : ProfileService){ }
+  constructor( private profileService : ProfileService , private router:Router){ }
     id : any;
     user : any;
 
@@ -27,6 +27,7 @@ export class ProfileFormComponent implements OnInit {
       email : '',
       address : ''
     };
+    id_utilisateur='';
 
     ngOnInit(): void {
       console.log("waliddd");
@@ -43,6 +44,7 @@ export class ProfileFormComponent implements OnInit {
       this.profileService.getUserID_DocumentIdByEmail(this.user.email)
           .subscribe(userId => {
             console.log("Document ID of the user:", userId);
+            localStorage.setItem("id_user" , userId );
             
           }, error => {
             console.error('Error retrieving user document ID:', error);
@@ -50,15 +52,17 @@ export class ProfileFormComponent implements OnInit {
       
     }
     updateProfile(){
+      let id_utilisateur = localStorage.getItem("id_user");
+      if(id_utilisateur != null){
+        this.profileService.updateProfile(id_utilisateur , this.dataUser);
+      }
       
+      this.router.navigate(['/home'])
     }
     updatePassword(){
-      // this.profileService.getUserByEmail(this.user.email).subscribe((users: any[]) => {
-      //   console.log('Users:', users);
-      // }, error => {
-      //   console.error('Error fetching user data:', error);
-      // });
+      
       this.profileService.updatePassword(this.dataPassword.newPassword)
+      this.router.navigate(['/home'])
       if (this.dataPassword.newPassword==this.dataPassword.confirmPassword){
         
       }
