@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProfileService } from '../../../service/Profile/profile.service';
 
 @Component({
   selector: 'app-profile-form',
   templateUrl: './profile-form.component.html',
   styleUrl: './profile-form.component.css'
 })
-export class ProfileFormComponent {
-  constructor( private router:Router , private route: Router){ }
+export class ProfileFormComponent implements OnInit {
+  
+  constructor( private profileService : ProfileService , private router:Router){ }
     id : any;
     user : any;
 
@@ -25,12 +27,13 @@ export class ProfileFormComponent {
       email : '',
       address : ''
     };
+    id_utilisateur='';
 
     ngOnInit(): void {
+      console.log("waliddd");
+      
       this.user=localStorage.getItem("user_login");
       this.user=JSON.parse(this.user);
-
-
       this.dataUser.firstName = this.user.firstName;
       this.dataUser.lastName = this.user.lastName;
       this.dataUser.dateBirth = this.user.dateBirth;
@@ -38,11 +41,32 @@ export class ProfileFormComponent {
       this.dataUser.email = this.user.email;
       this.dataUser.address = this.user.address;
 
+      this.profileService.getUserID_DocumentIdByEmail(this.user.email)
+          .subscribe(userId => {
+            console.log("Document ID of the user:", userId);
+            localStorage.setItem("id_user" , userId );
+            
+          }, error => {
+            console.error('Error retrieving user document ID:', error);
+          });
+      
     }
     updateProfile(){
-
+      let id_utilisateur = localStorage.getItem("id_user");
+      if(id_utilisateur != null){
+        this.profileService.updateProfile(id_utilisateur , this.dataUser);
+      }
+      
+      this.router.navigate(['/home'])
     }
     updatePassword(){
-
+      
+      this.profileService.updatePassword(this.dataPassword.newPassword)
+      this.router.navigate(['/home'])
+      if (this.dataPassword.newPassword==this.dataPassword.confirmPassword){
+        
+      }
     }
+
+    
 }

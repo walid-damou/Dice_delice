@@ -1,0 +1,60 @@
+<button
+    class="  text-[#D76823] font-medium capitalize text-sm px-2 py-1 rounded border border-[#D76823] hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+    type="button" (click)="toggleModal()">
+    More
+</button>
+<div *ngIf="showModal"
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+    <div class="relative w-auto my-6 mx-auto max-w-3xl">
+        <!--content-->
+        <div
+            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <!--header-->
+            <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                <h3 class="text-3xl font-semibold">
+                    
+                </h3>
+                <button
+                    class="p-1 ml-auto  border-0 text-gray-900 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    (click)="toggleModal()">
+                    <span class="bg-transparent text-gray-900 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                        ×
+                    </span>
+                </button>
+            </div>
+            <!--body-->
+            <div class="relative p-6 flex-auto">
+                <p class="my-4 text-slate-500 text-lg leading-relaxed">
+                    <span class="font-medium ">title</span> : {{book.volumeInfo.title}}
+                </p>
+                <p class="my-4 text-slate-500 text-lg leading-relaxed">
+                    <span class="font-medium "> publisher: </span> {{book.volumeInfo.publisher}}
+                </p>
+                <p class="my-4 text-slate-500 text-lg leading-relaxed">
+                    <span class="font-medium "> publishedDate: </span>{{book.volumeInfo.publishedDate}}
+                </p>
+                <p class="my-4 text-slate-500 text-lg leading-relaxed">
+                    <span class="font-medium ">previewLink:</span> <a href={{book.volumeInfo.previewLink}}>{{book.volumeInfo.previewLink}}</a> 
+                </p>
+                <div class="mb-3 space-x-2">
+                    <span
+                        class="capitalize inline-flex items-center justify-center px-3  text-md font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">
+                        
+                    </span>
+                    <span
+                        class="capitalize inline-flex items-center justify-center px-3  text-md font-medium text-gray-800 bg-[#fff0e4]  rounded-full dark:bg-gray-700 dark:text-gray-300">
+                        
+                    </span>
+                </div>
+            </div>
+            <!--footer-->
+            <!-- <div class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+        <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
+          Close
+        </button>
+       
+      </div> -->
+        </div>
+    </div>
+</div>
+<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
